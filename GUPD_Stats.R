@@ -13,7 +13,11 @@ getwd()
 
 ##Load in sampling data
 
-library(readxl)
+pdog<-read.csv("GUPD_Summer_2021.csv") ##lot of blank rows...
 
-pdog<-read_excel("GUPD_Summer_2021.xlsx", sheet=1)
+pdog<-pdog[-c(134:827), ] ##got rid of empty rows
+
+##subset out pdogs from KAIB
+
+kaib<-filter(pdog, pdog$Site.ID=="KAIB")
 
