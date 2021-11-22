@@ -79,3 +79,9 @@ deg2dms(35.14489)
 lapply(pdog$Lat, FUN=deg2dms)
 
 lapply(pdog$Long, FUN=deg2dms) ##didn't like that my "long" columns are ~113
+
+##gather "nobuto", "blood vial", and "tissue" into one column
+
+col_vals<-c("Nobuto", "Blood.Vial", "Tissue")
+  
+pdog_gather<-gather(data=pdog, key=sample.types, value=value, all_of(col_vals))
