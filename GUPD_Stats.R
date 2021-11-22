@@ -15,9 +15,10 @@ getwd()
 
 pdog<-read.csv("GUPD_Summer_2021.csv") ##lot of blank rows...
 
-pdog<-pdog[-c(134:827), ] ##got rid of empty rows
+pdog<-pdog[-c(134:827), ] ##got rid of empty rows; don't always need
 
 ##subset out pdogs from KAIB
 
-kaib<-filter(pdog, pdog$Site.ID=="KAIB")
+kaib<-pdog[c(1:25), ]
+
 
