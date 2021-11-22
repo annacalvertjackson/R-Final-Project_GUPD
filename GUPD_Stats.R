@@ -39,4 +39,12 @@ flea.sum<-pdog %>% group_by(Site.ID) %>% summarise(mean.fleas=mean(Number.Fleas)
 
 ##treated sites and urban sites have fewer fleas
 
+##Custom function for converting weight.grams to weight.kg
+
+g2kg<-function(x) {
+  weight.kg<-x/1000
+  return(weight.kg)
+}
+
+pdog$weight.kg<-g2kg(pdog$weight.grams)
 
