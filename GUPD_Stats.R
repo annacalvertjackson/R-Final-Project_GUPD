@@ -67,3 +67,15 @@ if(SOPC<TRTR) {
 }
 
 ##[1] "treated site"
+
+##lapply to convert lat and long columns to degrees/minutes/seconds
+
+library(celestial)
+
+##test out function
+
+deg2dms(35.14489)
+
+lapply(pdog$Lat, FUN=deg2dms)
+
+lapply(pdog$Long, FUN=deg2dms) ##didn't like that my "long" columns are ~113
