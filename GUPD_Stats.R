@@ -17,8 +17,26 @@ pdog<-read.csv("GUPD_Summer_2021.csv") ##lot of blank rows...
 
 pdog<-pdog[-c(134:827), ] ##got rid of empty rows; don't always need
 
+pdog<-pdog[-c(6:7), ] ##got rid of samples with NA's
+
 ##subset out pdogs from KAIB
 
 kaib<-pdog[c(1:25), ]
+
+##order kaib pdogs by decreasing weight
+
+library(taRifx)
+
+kaib.weight<-sort(kaib, decresing=TRUE, ~weight.grams)
+
+kaib.weight<-kaib[ , order("weight.grams", decreasing=TRUE)]
+
+##Group and summarize
+
+library(tidyverse)
+
+flea.sum<-pdog %>% group_by(Site.ID) %>% summarise(mean.fleas=mean(Number.Fleas))
+
+##treated sites and urban sites have fewer fleas
 
 
