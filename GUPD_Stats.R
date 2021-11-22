@@ -48,3 +48,22 @@ g2kg<-function(x) {
 
 pdog$weight.kg<-g2kg(pdog$weight.grams)
 
+##if_else statements
+##using flea.sum data
+##average number of fleas per site
+
+HOLX<-0.625
+
+PVMP<-4.71
+
+TRTR<-20.3
+
+SOPC<-0.0
+
+if(SOPC<TRTR) {
+  print("treated site")
+} else if (SOPC==TRTR) {
+  print("untreated site")
+}
+
+##[1] "treated site"
