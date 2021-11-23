@@ -96,5 +96,12 @@ pdog_melt<-melt(data=pdog, id.vars="Site.ID", "Collection.Date", "Sample.Number"
                 measure.vars="weight.grams", "length.cm", "tail.length.cm",
                 variable.name=c("measurements"))
 
+##for loops! Get a quick glance at flea counts..
 
+for(i in 1:length(pdog$PDOG.ID)) {
+  print(pdog$Number.Fleas[i])
+}
+
+##kinda lame, but figured out how to incorporate data frame values into for loops
+##should the need ever arise
 
