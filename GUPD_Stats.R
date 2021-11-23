@@ -85,3 +85,16 @@ lapply(pdog$Long, FUN=deg2dms) ##didn't like that my "long" columns are ~113
 col_vals<-c("Nobuto", "Blood.Vial", "Tissue")
   
 pdog_gather<-gather(data=pdog, key=sample.types, value=value, all_of(col_vals))
+
+##try out melt() with number values
+##weight, length, and tail length
+
+pdog_melt<-melt(data=pdog, id.vars="Site.ID", "Collection.Date", "Sample.Number",
+                "PDOG.ID", "Lat", "Long", "Recapture", "Previously.Tagged", 
+                "PIT.Tag.Number", "Sex", "Shaved", "Number.Fleas", "Nobuto",
+                "Blood.Vial", "Tissue", "Age", "Trap.Location", "weight.kg", 
+                measure.vars="weight.grams", "length.cm", "tail.length.cm",
+                variable.name=c("measurements"))
+
+
+
