@@ -154,4 +154,38 @@ weight<-ggplot(data=pdog, aes(x=weight.grams, y=Number.Fleas)) +
                 scale_x_continuous(name="Weight (g)", breaks=seq(from=0, to=1500, by=200)) +
                 theme_classic()
 
-weight
+weight ##slightly positive regression
+
+##Anova
+
+m1<-aov(formula=Number.Fleas~weight.grams, data=pdog)
+
+summary(m1)
+
+##Soo weight doesn't explain a whole lot variance in flea count..
+##p=0.15
+
+m2<-lm(formula=Number.Fleas~weight.grams, data=pdog)
+
+summary(m2)
+
+##R-squared pretty low (low correlation)
+##p=0.15
+
+m3<-lm(formula=sqrt(Number.Fleas)~weight.grams, data=pdog)
+
+summary(m3)
+##transforming y variable made things even less correlated/significant
+
+##Model Comparison
+
+AIC(m1, m2, m3)
+
+##But surprisingly, m3 (transformed y variable) has the lowest (best)
+##AIC score
+
+shapiro.test(pdog$Number.Fleas) ##Not normal!
+
+sqrt.fleas<-sqrt(pdog$Number.Fleas)
+
+shapiro.test(sqrt.fleas) ##square root makes data slightly more normal
