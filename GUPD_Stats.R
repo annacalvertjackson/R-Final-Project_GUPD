@@ -17,11 +17,11 @@ pdog<-read.csv("GUPD_Summer_2021.csv") ##lot of blank rows...
 
 pdog<-pdog[-c(134:827), ] ##got rid of empty rows; don't always need
 
-pdog<-pdog[-c(6:7), ] ##got rid of samples with NA's
+pdog<-pdog[-c(6, 7, 114, 118), ] ##got rid of samples with NA's
 
 ##subset out pdogs from KAIB
 
-kaib<-pdog[c(1:25), ]
+kaib<-pdog[c(1:23), ]
 
 ##order kaib pdogs by decreasing weight
 
@@ -89,6 +89,8 @@ pdog_gather<-gather(data=pdog, key=sample.types, value=value, all_of(col_vals))
 ##try out melt() with number values
 ##weight, length, and tail length
 
+library(reshape2)
+
 pdog_melt<-melt(data=pdog, id.vars="Site.ID", "Collection.Date", "Sample.Number",
                 "PDOG.ID", "Lat", "Long", "Recapture", "Previously.Tagged", 
                 "PIT.Tag.Number", "Sex", "Shaved", "Number.Fleas", "Nobuto",
@@ -105,3 +107,10 @@ for(i in 1:length(pdog$PDOG.ID)) {
 ##kinda lame, but figured out how to incorporate data frame values into for loops
 ##should the need ever arise
 
+##group pdogs by site and find mean weight!
+
+library(plyr)
+
+pdog_weights<-ddply(.data=pdog, .variables=c("Site.ID"), 
+                       .fun=summarise, mean.weight=mean(weight.grams))
+head(pdog_weights)
