@@ -120,3 +120,9 @@ head(pdog_weights)
 pdog_counts<-ddply(.data=pdog, .variables=c("Site.ID"), .fun=nrow)
 
 head(pdog_counts)
+
+##simple histogram
+
+hist(pdog$Number.Fleas) ##quick visualization of flea # range
+
+
