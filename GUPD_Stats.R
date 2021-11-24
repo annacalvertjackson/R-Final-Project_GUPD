@@ -148,8 +148,10 @@ fleas
 ##how about weight vs. fleas
 
 weight<-ggplot(data=pdog, aes(x=weight.grams, y=Number.Fleas)) +
-                geom_point() +
+                geom_point(color="darkseagreen2", size=3) +
+                geom_smooth(method="lm", se=FALSE, color="firebrick1") +
                 xlab("Weight (g)") + ylab("Flea Count") +
+                scale_x_continuous(name="Weight (g)", breaks=seq(from=0, to=1500, by=200)) +
                 theme_classic()
 
 weight
