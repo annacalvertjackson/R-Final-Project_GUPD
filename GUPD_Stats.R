@@ -114,3 +114,9 @@ library(plyr)
 pdog_weights<-ddply(.data=pdog, .variables=c("Site.ID"), 
                        .fun=summarise, mean.weight=mean(weight.grams))
 head(pdog_weights)
+
+##use ddply to count the number of samples per site
+
+pdog_counts<-ddply(.data=pdog, .variables=c("Site.ID"), .fun=nrow)
+
+head(pdog_counts)
