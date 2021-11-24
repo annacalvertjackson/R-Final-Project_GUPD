@@ -131,4 +131,25 @@ plot(pdog$weight.grams, type="p") ##weights all over the place
 
 ##humble beginnings...
 
+##ggplot finally!
+##let's see if we can make a pretty histogram
+##avg. number of fleas per site
 
+fleas<-ggplot(data=flea.sum, aes(x=Site.ID, y=mean.fleas, fill=Site.ID)) +
+                geom_histogram(stat="identity") +
+                xlab("Site") + ylab("Avg. Number Fleas") +
+                labs(fill="Site ID") +
+                theme_classic()
+
+fleas
+##a trend line wouldn't be too appropriate here
+##dealing with a categorical x variable...
+
+##how about weight vs. fleas
+
+weight<-ggplot(data=pdog, aes(x=weight.grams, y=Number.Fleas)) +
+                geom_point() +
+                xlab("Weight (g)") + ylab("Flea Count") +
+                theme_classic()
+
+weight
