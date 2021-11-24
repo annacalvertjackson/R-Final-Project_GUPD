@@ -125,4 +125,10 @@ head(pdog_counts)
 
 hist(pdog$Number.Fleas) ##quick visualization of flea # range
 
+##simple point plot
+
+plot(pdog$weight.grams, type="p") ##weights all over the place
+
+##humble beginnings...
+
 
