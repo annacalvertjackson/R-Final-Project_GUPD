@@ -23,14 +23,6 @@ pdog<-pdog[-c(6, 7, 114, 118), ] ##got rid of samples with NA's
 
 kaib<-pdog[c(1:23), ]
 
-##order kaib pdogs by decreasing weight
-
-library(taRifx)
-
-kaib.weight<-sort(kaib, decresing=TRUE, ~weight.grams)
-
-kaib.weight<-kaib[ , order("weight.grams", decreasing=TRUE)]
-
 ##Group and summarize
 
 library(tidyverse)
@@ -156,6 +148,8 @@ weight<-ggplot(data=pdog, aes(x=weight.grams, y=Number.Fleas)) +
 
 weight ##slightly positive regression
 
+##Christmas colors!
+
 ##Anova
 
 m1<-aov(formula=Number.Fleas~weight.grams, data=pdog)
@@ -189,3 +183,56 @@ shapiro.test(pdog$Number.Fleas) ##Not normal!
 sqrt.fleas<-sqrt(pdog$Number.Fleas)
 
 shapiro.test(sqrt.fleas) ##square root makes data slightly more normal
+
+##Export plots
+
+
+
+##Map of 2021 Trapping Sites
+
+##Libraries I need:
+library(ggplot2)
+library(ggmap)
+library(maps)
+library(mapdata)
+
+##Base states data
+
+states<- map_data("state")
+
+arizona<- subset(states, region %in% c("arizona"))
+
+map_arizona<-ggplot(data = arizona) + 
+  geom_polygon(aes(x = long, y = lat, group=group), fill = "palegreen", color = "black") +
+  coord_fixed(1.3)
+
+map_arizona
+
+
+##Read in data points for 2021 trapping sites
+
+contemporary<-read.csv("2021_sites.csv")
+
+head(contemporary)
+
+##map the contemporary points
+
+ggplot() +
+  geom_point(data=contemporary, aes(x=Longitude, y=Latitude), color="red") ##Color has to be specified outside of aes()
+
+##combine contemporary points onto the Arizona map
+
+map<- ggplot(data = arizona) + 
+  geom_polygon(aes(x = long, y = lat, group=group), fill = "palegreen", color = "black") +
+  coord_fixed(1.3) +
+  geom_point(data=contemporary, aes(x=Longitude, y=Latitude), color="red") +
+  theme(legend.position = "none") + ##this gets rid of legend
+  theme_classic()
+
+map
+
+map.labels<-geom_text(data=contemporary, aes(label=site, group=site))
+
+map + map.labels
+
+##Will try to add in Navajo nation sites next summer!
