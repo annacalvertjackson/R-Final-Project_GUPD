@@ -60,7 +60,8 @@ if(SOPC<TRTR) {
 
 ##[1] "treated site"
 
-##lapply to convert lat and long columns to degrees/minutes/seconds
+##lapply to convert lat and long columns from decimal degrees
+##to degrees/minutes/seconds
 
 library(celestial)
 
@@ -87,8 +88,9 @@ pdog_melt<-melt(data=pdog, id.vars="Site.ID", "Collection.Date", "Sample.Number"
                 "PDOG.ID", "Lat", "Long", "Recapture", "Previously.Tagged", 
                 "PIT.Tag.Number", "Sex", "Shaved", "Number.Fleas", "Nobuto",
                 "Blood.Vial", "Tissue", "Age", "Trap.Location", "weight.kg", 
-                measure.vars="weight.grams", "length.cm", "tail.length.cm",
+                measure.vars=c("weight.grams", "length.cm", "tail.length.cm"),
                 variable.name=c("measurements"))
+
 
 ##for loops! Get a quick glance at flea counts..
 
