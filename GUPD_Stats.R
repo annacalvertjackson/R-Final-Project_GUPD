@@ -184,9 +184,6 @@ sqrt.fleas<-sqrt(pdog$Number.Fleas)
 
 shapiro.test(sqrt.fleas) ##square root makes data slightly more normal
 
-##Export plots
-
-
 
 ##Map of 2021 Trapping Sites
 
@@ -231,8 +228,10 @@ map<- ggplot(data = arizona) +
 
 map
 
-map.labels<-geom_text(data=contemporary, aes(label=site, group=site))
-
-map + map.labels
-
 ##Will try to add in Navajo nation sites next summer!
+
+##Export Plots
+
+png("sitemap.png")
+plot(map)
+dev.off()
