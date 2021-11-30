@@ -5,6 +5,10 @@
 ##on field data from Summer 2021 sampling
 ##of Gunnison's Prairie Dog in Arizona
 
+##Follow me on GitHub!
+
+https://github.com/annacalvertjackson/R-Final-Project_GUPD.git
+
 ##set working directory
 
 setwd("C:/Users/annac/Desktop/Grad School/Classes/Fall2021_Classes/Intro to R/Final Project")
